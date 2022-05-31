@@ -1,25 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
+
+import ky from "ky";
+import MovieInfo from "./TVInfo";
 
 function App() {
+  // const releaseDateMorbius = async () => {
+  //   const json = await ky
+  //     .get(
+  //       `https://api.themoviedb.org/3/movie/526896/release_dates?api_key=${process.env.REACT_APP_TMDB_API_KEY}`
+  //     )
+  //     .json();
+  //   console.log(json);
+  //   return json;
+  // };
+
+  // const;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<MovieInfo />}></Route>
+      </Routes>
+    </Router>
   );
 }
 
