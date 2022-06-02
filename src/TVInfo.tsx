@@ -1,30 +1,32 @@
 import ky from "ky";
-import { SetStateAction, useState } from "react";
-import "./TVInfo.css";
+import React, { useState, ChangeEvent } from "react";
+import "./TVInfo.scss";
+import { ApiSearchResponse } from "./types/SearchTvResponse";
 
 const TVInfo = () => {
   const [searchTitle, setSearchTitle] = useState("");
+  const [searchResults, setSearchResults] = useState<ApiSearchResponse>();
 
-  const searchTitleInputHandler = (event: {
-    target: { value: SetStateAction<string> };
-  }) => {
+  const searchTitleInputHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTitle(event.target.value);
     console.log(searchTitle);
   };
 
   const getTVSearchInfo = async () => {
-    const tvSearchInfo = await ky
+    const tvSearchInfo: ApiSearchResponse = await ky
       .get(
-        `
-    https://api.themoviedb.org/3/search/company?api_key=${process.env.REACT_APP_TMDB_API_KEY}&query=${searchTitle}`
+        `https://api.themoviedb.org/3/search/tv?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1&query=${searchTitle}&include_adult=false`
       )
       .json();
-    // return console.log(tvSearchInfo);
+    console.log(tvSearchInfo.results[0].id);
+
+    // setSearchResults(tvSearchInfo);
   };
+  console.log(searchResults);
   getTVSearchInfo();
 
   return (
-    <div className="Movie_Page_Wrapper">
+    <div className="moviePageWrapper">
       <input type="text" onChange={searchTitleInputHandler} />
     </div>
   );
