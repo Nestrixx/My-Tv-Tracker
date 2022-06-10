@@ -1,12 +1,17 @@
+import { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
 import ky from "ky";
-import React, { useState, useEffect } from "react";
+
+import { TvInfoContext } from "./TvInfoContext";
 import "./TVInfo.scss";
-import { ApiSearchResponse } from "./types/SearchTvResponse";
-import { TvDetailedInfo } from "./types/TvDetailedInfo";
+
+import type { ApiSearchResponse, TvContextType, TvDetailedInfo } from "./types";
 
 const TVInfo = () => {
-  const [searchTitle, setSearchTitle] = useState("");
   const [searchResults, setSearchResults] = useState<ApiSearchResponse>();
+  const [searchTitle, setSearchTitle] = useState("");
+  const { detailedTvInfo, setDetailedTvInfo }: TvContextType =
+    useContext(TvInfoContext);
 
   useEffect(() => {
     const searchTitleInputHandler = async () => {
@@ -21,31 +26,34 @@ const TVInfo = () => {
   }, [searchTitle]);
 
   // this code will handler the list item api call.
-  const tvShowDetailsHandler = async (ID: number) => {
-    console.log(ID);
+  const tvShowDetailsHandler = async (id: number) => {
+    console.log(id);
     const tvDetailedInfo: TvDetailedInfo = await ky
       .get(
-        `https://api.themoviedb.org/3/tv/${ID}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
+        `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
       )
       .json();
 
-    console.log(tvDetailedInfo.name);
+    setDetailedTvInfo(tvDetailedInfo);
+    console.log(detailedTvInfo);
   };
 
   return (
     <div className="moviePageWrapper">
       <input type="text" onChange={(e) => setSearchTitle(e.target.value)} />
-      <div className="listWrapper">
-        <ul>
+      <div className="totalListWrapper">
+        <ul className="uListWrapper">
           {searchResults?.results.map((searchResult) => (
-            <li
-              key={searchResult.id}
-              onClick={() => {
-                tvShowDetailsHandler(searchResult.id);
-              }}
-            >
-              {searchResult.name}{" "}
-            </li>
+            <Link to="/details" className="tvDetailsLinks">
+              <li
+                key={searchResult.id}
+                onClick={() => {
+                  tvShowDetailsHandler(searchResult.id);
+                }}
+              >
+                {searchResult.name}{" "}
+              </li>
+            </Link>
           ))}
         </ul>
       </div>
