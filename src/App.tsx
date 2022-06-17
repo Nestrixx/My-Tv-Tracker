@@ -7,11 +7,11 @@ import React, { useState } from "react";
 import { TvDetailedInfo } from "./types/TvDetailedInfo";
 
 function App() {
-  const [detailedTvInfo, setDetailedTvInfo] = useState<TvDetailedInfo>();
+  const [detailedTvId, setDetailedTvId] = useState<TvDetailedInfo>();
 
   return (
     <Router>
-      <TvInfoContext.Provider value={{ detailedTvInfo, setDetailedTvInfo }}>
+      <TvInfoContext.Provider value={{ detailedTvId, setDetailedTvId }}>
         <Routes>
           <Route path="/" element={<TvInfo />}></Route>
           <Route path="/details" element={<TvDetailsPage />}></Route>
