@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ky from "ky";
+import placeHolder from "./assets/noPhoto.jpg";
 
 import { TvInfoContext } from "./TvInfoContext";
 import "./TVInfo.scss";
@@ -48,17 +49,32 @@ const TVInfo = () => {
   // }, [searchId, setDetailedTvInfo]);
 
   return (
-    <div className="moviePageWrapper">
+    <div className="tvPageWrapper">
       <input type="text" onChange={(e) => setSearchTitle(e.target.value)} />
       <div className="totalListWrapper">
         <ul className="uListWrapper">
           {searchResults?.results.map((searchResult) => (
             // <Link to="/details" className="tvDetailsLinks">
             <li
+              className="searchResultsCard"
               key={searchResult.id}
               onClick={() => tvShowDetailsHandler(searchResult.id)}
             >
-              {searchResult.name}{" "}
+              {searchResult.poster_path !== null ? (
+                <img
+                  className="searchResultsImage"
+                  src={`https://image.tmdb.org/t/p/w154${searchResult?.poster_path}`}
+                  alt="search results posters"
+                />
+              ) : (
+                <img
+                  className="searchResultsImage"
+                  src={placeHolder}
+                  alt="missing search results posters"
+                  height={255}
+                />
+              )}
+              {searchResult.name}
             </li>
             // </Link>
           ))}

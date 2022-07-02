@@ -1,0 +1,37 @@
+.pageWrapper {
+    background-color: #36393f;
+    height: 100vh;
+    color: white;
+}
+
+.detailsWrapper {
+    position: absolute;
+    padding: 15px;
+    height: 80%;
+    width: 80%;
+    top: 10%;
+    left: 10%;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    border: 1px solid white;
+    border-radius: 2%;
+}
+
+.imageOverviewWrapper {
+    display: flex;
+    column-gap: 10px;
+    justify-content: space-between;
+}
+
+.subInfo {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid white;
+    margin-top: 10px;
+}
+
+.linkClass {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
