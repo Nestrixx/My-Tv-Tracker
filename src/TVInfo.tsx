@@ -19,7 +19,7 @@ const TVInfo = () => {
     const searchTitleInputHandler = async () => {
       const tvSearchInfo: ApiSearchResponse = await ky
         .get(
-          `https://api.themoviedb.org/3/search/tv?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1&query=${searchTitle}&include_adult=true`
+          `https://api.themoviedb.org/3/search/tv?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1&query=${searchTitle}`
         )
         .json();
       setSearchResults(tvSearchInfo);
@@ -60,11 +60,12 @@ const TVInfo = () => {
               key={searchResult.id}
               onClick={() => tvShowDetailsHandler(searchResult.id)}
             >
-              {searchResult.poster_path !== null ? (
+              {!!searchResult.poster_path ? (
                 <img
                   className="searchResultsImage"
                   src={`https://image.tmdb.org/t/p/w154${searchResult?.poster_path}`}
                   alt="search results posters"
+                  height={255}
                 />
               ) : (
                 <img
@@ -74,7 +75,7 @@ const TVInfo = () => {
                   height={255}
                 />
               )}
-              {searchResult.name}
+              <h1 className="searchResultsTitle">{searchResult.name}</h1>
             </li>
             // </Link>
           ))}
