@@ -31,7 +31,7 @@
 
 .searchResultsCard {
     &:hover {
-        color: orange;
+        color: black;
     }
     display: flex;
     flex-direction: column;
@@ -39,6 +39,16 @@
     height: 275px;
     position: relative;
     z-index: 20;
+    border-radius: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+//this needs some work it still darkens the words as well as the writing.
+.searchResultsImage:hover {
+    background-color: #000;
+    opacity: 0.5;
+    // filter: brightness(200%);
 }
 
 .searchResultsImage {
@@ -46,9 +56,35 @@
     z-index: 0;
     width: 170px;
     height: 275px;
+    overflow: hidden;
+    border-radius: 20px;
 }
 
 .searchResultsTitle {
     z-index: 2;
-    font-size: 25px;
+    font-size: 29px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 5px;
+    // width: fit-content;
+    // filter: brightness(200%);
+}
+
+.tvSearchInput {
+    width: 95%;
+    color: white;
+    font-size: 1.3rem;
+    border-radius: 9999px;
+    padding-left: 0.5rem;
+    border-width: 1px;
+    background: transparent;
+    margin-top: 15px;
+    margin-left: 40px;
+}
+
+.searchResultsOverview {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 5px;
+    // filter: brightness(200%);
 }

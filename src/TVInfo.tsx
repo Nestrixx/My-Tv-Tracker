@@ -1,12 +1,12 @@
 import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ky from "ky";
-import placeHolder from "./assets/noPhoto.jpg";
 
 import { TvInfoContext } from "./TvInfoContext";
 import "./TVInfo.scss";
 
 import type { ApiSearchResponse, TvContextType, TvDetailedInfo } from "./types";
+import TvShowCard from "./TvShowCard";
 
 const TVInfo = () => {
   const [searchResults, setSearchResults] = useState<ApiSearchResponse>();
@@ -35,49 +35,21 @@ const TVInfo = () => {
     setDetailedTvId(id);
   };
 
-  // useEffect(() => {
-  // const tvShowDetailsHandler = async (searchId: number) => {
-  //   const tvDetailedInfo: TvDetailedInfo = await ky
-  //     .get(
-  //       `https://api.themoviedb.org/3/tv/${searchId}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
-  //     )
-  //     .json();
-  //   setDetailedTvInfo(tvDetailedInfo);
-  //   console.log(tvDetailedInfo.id);
-  // };
-  // tvShowDetailsHandler();
-  // }, [searchId, setDetailedTvInfo]);
-
   return (
     <div className="tvPageWrapper">
-      <input type="text" onChange={(e) => setSearchTitle(e.target.value)} />
+      <input
+        className="tvSearchInput"
+        type="text"
+        onChange={(e) => setSearchTitle(e.target.value)}
+        placeholder="search your favorite series here"
+      />
       <div className="totalListWrapper">
         <ul className="uListWrapper">
           {searchResults?.results.map((searchResult) => (
-            // <Link to="/details" className="tvDetailsLinks">
-            <li
-              className="searchResultsCard"
-              key={searchResult.id}
-              onClick={() => tvShowDetailsHandler(searchResult.id)}
-            >
-              {!!searchResult.poster_path ? (
-                <img
-                  className="searchResultsImage"
-                  src={`https://image.tmdb.org/t/p/w154${searchResult?.poster_path}`}
-                  alt="search results posters"
-                  height={255}
-                />
-              ) : (
-                <img
-                  className="searchResultsImage"
-                  src={placeHolder}
-                  alt="missing search results posters"
-                  height={255}
-                />
-              )}
-              <h1 className="searchResultsTitle">{searchResult.name}</h1>
-            </li>
-            // </Link>
+            <TvShowCard
+              tvShowDetailsHandler={tvShowDetailsHandler}
+              searchResult={searchResult}
+            ></TvShowCard>
           ))}
         </ul>
       </div>
