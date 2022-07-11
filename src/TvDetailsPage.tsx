@@ -7,7 +7,8 @@ import { Link, useNavigate } from "react-router-dom";
 import "./TvDetailsPage.scss";
 
 const TvDetailsPage = () => {
-  const { detailedTvId }: TvContextType = useContext(TvInfoContext);
+  const { detailedTvId, setDetailedTvId }: TvContextType =
+    useContext(TvInfoContext);
   const [detailedTvInfo, setDetailedTvInfo] = useState<TvDetailedInfo>();
 
   // const navigate = useNavigate();
@@ -34,6 +35,10 @@ const TvDetailsPage = () => {
     getCurrentlyAiringShows();
   });
 
+  const detailedTvIdHandler = () => {
+    setDetailedTvId(undefined);
+  };
+  detailedTvIdHandler();
   return (
     <div className="pageWrapper">
       <div className="detailsWrapper">

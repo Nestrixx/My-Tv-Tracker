@@ -1,7 +1,19 @@
 .pageWrapper {
-    background-color: #36393f;
+    // background-color: #36393f;
+    width: 100%;
     height: 100vh;
-    color: white;
+    background: linear-gradient( 45deg, rgba(251, 238, 147, 1) 0%, rgba(116, 227, 236, 1) 43%, rgba(242, 111, 235, 1) 100%);
+    background-size: 300%;
+    animation: bg-animation 15s infinite alternate;
+}
+
+@keyframes bg-animation {
+    0% {
+        background-position: left;
+    }
+    100% {
+        background-position: right;
+    }
 }
 
 .detailsWrapper {

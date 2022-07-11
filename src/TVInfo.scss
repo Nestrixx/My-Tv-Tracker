@@ -62,7 +62,7 @@
 
 .searchResultsTitle {
     z-index: 2;
-    font-size: 29px;
+    font-size: 25px;
     overflow: hidden;
     text-overflow: ellipsis;
     margin-left: 5px;
@@ -83,8 +83,12 @@
 }
 
 .searchResultsOverview {
-    overflow: hidden;
+    // overflow: hidden;
+    display: block;
+    width: fit-content;
+    height: 150px;
     text-overflow: ellipsis;
-    margin-left: 5px;
+    margin: 5px;
+    white-space: normal;
     // filter: brightness(200%);
 }
