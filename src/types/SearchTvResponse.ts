@@ -19,4 +19,6 @@ export type SearchResponse = {
   poster_path: string;
   vote_average: number;
   vote_count: number;
+  adult: boolean | null;
+  media_type: string | null;
 };

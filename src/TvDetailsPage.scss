@@ -31,7 +31,7 @@
 .imageOverviewWrapper {
     display: flex;
     column-gap: 10px;
-    justify-content: space-between;
+    // justify-content: space-between;
 }
 
 .subInfo {
@@ -42,8 +42,18 @@
 }
 
 .linkClass {
-    color: white;
+    color: black;
     text-decoration: none;
     display: flex;
     align-items: center;
+    font-size: larger;
+    margin-left: 10%;
+    padding-top: 3%;
+    font-weight: bold;
+}
+
+.detailedPagePoster {
+    height: 255px;
+    width: 170px;
+    border-radius: 30px;
 }

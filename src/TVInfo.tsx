@@ -18,7 +18,6 @@ const TVInfo = () => {
   useEffect(() => {
     const searchTitleInputHandler = async () => {
       if (searchTitle !== "") {
-        console.log("here is problem A");
         const tvSearchInfo: ApiSearchResponse = await ky
           .get(
             `https://api.themoviedb.org/3/search/tv?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1&query=${searchTitle}`
@@ -31,7 +30,6 @@ const TVInfo = () => {
   }, [searchTitle]);
 
   useEffect(() => {
-    console.log("here is problem b");
     if (!!detailedTvId) navigate("./details", { replace: true });
   }, [detailedTvId, navigate]);
 
