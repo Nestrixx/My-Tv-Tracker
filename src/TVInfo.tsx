@@ -30,7 +30,8 @@ const TVInfo = () => {
   }, [searchTitle]);
 
   useEffect(() => {
-    if (!!detailedTvId) navigate("./details", { replace: true });
+    if (!!detailedTvId)
+      navigate(`./details/${detailedTvId}`, { replace: true });
   }, [detailedTvId, navigate]);
 
   const tvShowDetailsHandler = (id: number) => {

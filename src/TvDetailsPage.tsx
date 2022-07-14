@@ -4,7 +4,7 @@ import { TvInfoContext } from "./TvInfoContext";
 import type { TvContextType, TvDetailedInfo, ApiSearchResponse } from "./types";
 import { Link, useNavigate } from "react-router-dom";
 import placeHolder from "./assets/noPhoto.jpg";
-
+import { parseISO } from "date-fns";
 import "./TvDetailsPage.scss";
 import TvShowCard from "./TvShowCard";
 
@@ -50,8 +50,25 @@ const TvDetailsPage = () => {
   const tvShowDetailsHandler = (id: number) => {
     setDetailedTvId(id);
   };
+
+  console.log(
+    detailedTvInfo?.next_episode_to_air?.air_date
+      ? parseISO(detailedTvInfo?.next_episode_to_air?.air_date)
+      : "no"
+  );
+  !!detailedTvInfo?.next_episode_to_air?.air_date
+    ? console.log(parseISO(detailedTvInfo?.next_episode_to_air.air_date))
+    : console.log("not work");
+
   return (
     <div className="pageWrapper">
+      <Link
+        to={"/"}
+        className="linkClass"
+        onClick={() => setDetailedTvId(undefined)}
+      >
+        Look for another series?
+      </Link>
       <div className="detailsWrapper">
         <h1>{detailedTvInfo?.name}</h1>
         <div className="imageOverviewWrapper">
@@ -70,31 +87,33 @@ const TvDetailsPage = () => {
               height={255}
             />
           )}
-          <p>{detailedTvInfo?.overview}</p>
+          <div className="">
+            <p>{detailedTvInfo?.overview}</p>
+            {!!detailedTvInfo?.next_episode_to_air ? (
+              <p>{detailedTvInfo.next_episode_to_air.air_date}</p>
+            ) : (
+              <p>Next episode is unavailable</p>
+            )}
+          </div>
         </div>
         <div className="subInfo">
           <p>{`Initial air date ${detailedTvInfo?.first_air_date}`}</p>
           <p>{`${detailedTvInfo?.vote_average}/10`}</p>
           <p>{`Number of seasons ${detailedTvInfo?.number_of_seasons}`}</p>
-          <p>{`Current status: ${detailedTvInfo?.status}`}</p>
+          <p>{`Status: ${detailedTvInfo?.status}`}</p>
         </div>
-      </div>
-      <Link
-        to={"/"}
-        className="linkClass"
-        onClick={() => setDetailedTvId(undefined)}
-      >
-        Look for another series?
-      </Link>
-      <div>
-        {generaSearchResults?.results
-          .map((searchResult) => (
-            <TvShowCard
-              tvShowDetailsHandler={tvShowDetailsHandler}
-              searchResult={searchResult}
-            ></TvShowCard>
-          ))
-          .slice(0, 5)}
+
+        <div className="recommendedShowsWrapper">
+          {generaSearchResults?.results
+            .map((searchResult) => (
+              <TvShowCard
+                tvShowDetailsHandler={tvShowDetailsHandler}
+                searchResult={searchResult}
+                // size={}
+              ></TvShowCard>
+            ))
+            .slice(0, 5)}
+        </div>
       </div>
     </div>
   );

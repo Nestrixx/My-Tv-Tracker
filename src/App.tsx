@@ -14,7 +14,7 @@ function App() {
       <TvInfoContext.Provider value={{ detailedTvId, setDetailedTvId }}>
         <Routes>
           <Route path="/" element={<TvInfo />}></Route>
-          <Route path="/details" element={<TvDetailsPage />}></Route>
+          <Route path="/details/:tvId" element={<TvDetailsPage />}></Route>
         </Routes>
       </TvInfoContext.Provider>
     </Router>
