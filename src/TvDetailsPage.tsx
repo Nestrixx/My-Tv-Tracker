@@ -79,7 +79,7 @@ const TvDetailsPage = () => {
         Look for another series?
       </Link>
       <div className="detailsWrapper">
-        <h1>{detailedTvInfo?.name}</h1>
+        <h1 className="detailedCardTitle">{detailedTvInfo?.name}</h1>
         <div className="imageOverviewWrapper">
           {!!detailedTvInfo?.poster_path ? (
             <img

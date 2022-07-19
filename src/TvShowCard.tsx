@@ -20,7 +20,7 @@ const TvShowCard = ({
   const posterSizeHandler = () => {
     const hasPoster = !!searchResult.poster_path;
     return (
-      <div>
+      <div className={cardSize ? "" : "smallerSearchResultsWrapper"}>
         <img
           className={
             cardSize ? "searchResultsImage" : "smallerSearchResultsImage"

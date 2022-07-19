@@ -54,10 +54,12 @@ body {
     margin-left: 13rem;
     padding-top: 3%;
     font-weight: bold;
+    display: inline-block;
 }
 
 .detailedPagePoster {
     border-radius: 30px;
+    display: flex;
 }
 
 .recommendedShowsWrapper {
@@ -69,7 +71,36 @@ body {
 
 .overviewContent {
     max-width: 550px;
-    max-height: 300px;
-    overflow-y: scroll;
-    // overflow: scroll; // white-space: nowrap;
+    max-height: 220px;
+    overflow-y: auto;
+    // scrollbar // overflow: scroll; // white-space: nowrap;
+}
+
+.detailedCardTitle {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    max-width: 500px;
+}
+
+::-webkit-scrollbar {
+    width: 0.6rem;
+}
+
+::-webkit-scrollbar-track {
+    background: rgb(11, 61, 108);
+    border-radius: 100vw;
+}
+
+::-webkit-scrollbar-thumb {
+    background: hsl(360, 100%, 100%);
+    border-radius: 100vw;
+    border: 0.1rem solid rgb(11, 61, 108);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: hsl(360, 100%, 50% / 1);
 }
