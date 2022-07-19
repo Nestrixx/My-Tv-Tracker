@@ -16,7 +16,13 @@ body {
     }
 }
 
+// ok so this works but i probably need to remove this until i can make it all work
+.particlesAffect {
+    z-index: 0;
+}
+
 .detailsWrapper {
+    z-index: 1;
     position: fixed;
     display: flex;
     justify-content: center;
@@ -33,7 +39,8 @@ body {
 
 .imageOverviewWrapper {
     display: flex;
-    column-gap: 15px;
+    column-gap: 2rem;
+    width: 100%;
 }
 
 .subInfo {
@@ -70,6 +77,7 @@ body {
 }
 
 .overviewContent {
+    min-height: 25px;
     max-width: 550px;
     max-height: 220px;
     overflow-y: auto;
@@ -81,7 +89,7 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
     max-width: 500px;
 }

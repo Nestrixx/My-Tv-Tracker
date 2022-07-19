@@ -7,6 +7,10 @@ import placeHolder from "./assets/noPhoto.jpg";
 import { parseISO } from "date-fns";
 import "./TvDetailsPage.scss";
 import TvShowCard from "./TvShowCard";
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
+import particlesOptions from "./particles.json";
+import { ISourceOptions } from "tsparticles-engine";
 
 const TvDetailsPage = () => {
   const [generaSearchResults, setGeneraSearchResults] =
@@ -17,6 +21,11 @@ const TvDetailsPage = () => {
   const { tvId } = useParams();
   console.log(tvId);
   console.log(detailedTvId);
+
+  const particlesInit = async (main: any) => {
+    console.log(main);
+    await loadFull(main);
+  };
 
   useEffect(() => {
     return () => {
@@ -75,6 +84,12 @@ const TvDetailsPage = () => {
 
   return (
     <div className="pageWrapper">
+      {/* the particles work but not quiet right */}
+      {/* <Particles
+        className="particlesAffect"
+        options={particlesOptions as ISourceOptions}
+        init={particlesInit}
+      /> */}
       <Link to={"/"} className="linkClass">
         Look for another series?
       </Link>

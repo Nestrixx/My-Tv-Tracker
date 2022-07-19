@@ -50,7 +50,7 @@ const TvShowCard = ({
     <li
       onMouseEnter={() => setIsTextHover(true)}
       onMouseLeave={() => setIsTextHover(false)}
-      className="searchResultsCard"
+      className={`searchResultsCard ${!cardSize && "-small"}`}
       key={searchResult.id}
       onClick={() => tvShowDetailsHandler(searchResult.id)}
     >
