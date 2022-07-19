@@ -1,5 +1,5 @@
 import "./App.scss";
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TvInfo from "./TVInfo";
 import TvDetailsPage from "./TvDetailsPage";
 import { TvInfoContext } from "./TvInfoContext.js";

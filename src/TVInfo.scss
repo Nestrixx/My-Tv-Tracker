@@ -44,22 +44,6 @@
     text-overflow: ellipsis;
 }
 
-//this needs some work it still darkens the words as well as the writing.
-.searchResultsImage:hover {
-    background-color: #000;
-    opacity: 0.5;
-    // filter: brightness(200%);
-}
-
-.searchResultsImage {
-    position: absolute;
-    z-index: 0;
-    width: 170px;
-    height: 275px;
-    overflow: hidden;
-    border-radius: 20px;
-}
-
 .searchResultsTitle {
     z-index: 2;
     font-size: 25px;

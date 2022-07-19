@@ -2,7 +2,7 @@ import ky from "ky";
 import { useContext, useEffect, useState } from "react";
 import { TvInfoContext } from "./TvInfoContext";
 import type { TvContextType, TvDetailedInfo, ApiSearchResponse } from "./types";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import placeHolder from "./assets/noPhoto.jpg";
 import { parseISO } from "date-fns";
 import "./TvDetailsPage.scss";
@@ -14,33 +14,46 @@ const TvDetailsPage = () => {
   const { detailedTvId, setDetailedTvId }: TvContextType =
     useContext(TvInfoContext);
   const [detailedTvInfo, setDetailedTvInfo] = useState<TvDetailedInfo>();
+  const { tvId } = useParams();
+  console.log(tvId);
+  console.log(detailedTvId);
 
-  // const navigate = useNavigate();
+  useEffect(() => {
+    return () => {
+      setDetailedTvId(undefined);
+    };
+  }, [setDetailedTvId]);
 
   useEffect(() => {
     const getTvShowDetails = async () => {
       const tvDetailedInfo: TvDetailedInfo = await ky
         .get(
-          `https://api.themoviedb.org/3/tv/${detailedTvId}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
+          `https://api.themoviedb.org/3/tv/${
+            detailedTvId ? detailedTvId : tvId
+          }?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
         )
         .json();
       setDetailedTvInfo(tvDetailedInfo);
     }; // console.log(tvDetailedInfo);
 
     getTvShowDetails();
-  }, [detailedTvId]);
+  }, [detailedTvId, tvId]);
 
   useEffect(() => {
     const getTvShowRecommendations = async () => {
       const tvRecommendationsShows: ApiSearchResponse = await ky
         .get(
-          `https://api.themoviedb.org/3/tv/${detailedTvId}/recommendations?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`
+          `https://api.themoviedb.org/3/tv/${
+            detailedTvId ? detailedTvId : tvId
+          }/recommendations?api_key=${
+            process.env.REACT_APP_TMDB_API_KEY
+          }&language=en-US&page=1`
         )
         .json();
       setGeneraSearchResults(tvRecommendationsShows);
     };
     getTvShowRecommendations();
-  }, [detailedTvId]);
+  }, [detailedTvId, tvId]);
 
   useEffect(() => {
     const getCurrentlyAiringShows = async () => {};
@@ -62,11 +75,7 @@ const TvDetailsPage = () => {
 
   return (
     <div className="pageWrapper">
-      <Link
-        to={"/"}
-        className="linkClass"
-        onClick={() => setDetailedTvId(undefined)}
-      >
+      <Link to={"/"} className="linkClass">
         Look for another series?
       </Link>
       <div className="detailsWrapper">
@@ -88,7 +97,7 @@ const TvDetailsPage = () => {
             />
           )}
           <div className="">
-            <p>{detailedTvInfo?.overview}</p>
+            <p className="overviewContent">{detailedTvInfo?.overview}</p>
             {!!detailedTvInfo?.next_episode_to_air ? (
               <p>{detailedTvInfo.next_episode_to_air.air_date}</p>
             ) : (
@@ -109,7 +118,7 @@ const TvDetailsPage = () => {
               <TvShowCard
                 tvShowDetailsHandler={tvShowDetailsHandler}
                 searchResult={searchResult}
-                // size={}
+                cardSize={false}
               ></TvShowCard>
             ))
             .slice(0, 5)}

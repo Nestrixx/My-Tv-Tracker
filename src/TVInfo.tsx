@@ -1,14 +1,15 @@
 import { useState, useEffect, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ky from "ky";
 
 import { TvInfoContext } from "./TvInfoContext";
 import "./TVInfo.scss";
 
-import type { ApiSearchResponse, TvContextType, TvDetailedInfo } from "./types";
+import type { ApiSearchResponse, TvContextType } from "./types";
 import TvShowCard from "./TvShowCard";
 
 const TVInfo = () => {
+  console.log("bryce says hi");
   const [searchResults, setSearchResults] = useState<ApiSearchResponse>();
   const [searchTitle, setSearchTitle] = useState("");
   const { detailedTvId, setDetailedTvId }: TvContextType =
@@ -30,8 +31,7 @@ const TVInfo = () => {
   }, [searchTitle]);
 
   useEffect(() => {
-    if (!!detailedTvId)
-      navigate(`./details/${detailedTvId}`, { replace: true });
+    if (!!detailedTvId) navigate(`./details/${detailedTvId}`);
   }, [detailedTvId, navigate]);
 
   const tvShowDetailsHandler = (id: number) => {
@@ -52,6 +52,7 @@ const TVInfo = () => {
             <TvShowCard
               tvShowDetailsHandler={tvShowDetailsHandler}
               searchResult={searchResult}
+              cardSize={true}
             ></TvShowCard>
           ))}
         </ul>
