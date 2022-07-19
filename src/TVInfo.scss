@@ -32,6 +32,7 @@
 .searchResultsCard {
     &:hover {
         color: black;
+        cursor: pointer;
     }
     &.-small {
         width: 135px;
