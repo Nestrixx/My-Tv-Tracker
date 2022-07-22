@@ -41,7 +41,7 @@ const TvDetailsPage = () => {
         )
         .json();
       setDetailedTvInfo(tvDetailedInfo);
-    }; // console.log(tvDetailedInfo);
+    };
 
     getTvShowDetails();
   }, [detailedTvId, tvId]);
@@ -79,7 +79,7 @@ const TvDetailsPage = () => {
         options={particlesOptions as ISourceOptions}
         init={particlesInit}
       /> */}
-      <Link to={"/"} className="linkClass">
+      <Link to={"/"} className="linkClass" onClick={() => console.log("hello")}>
         Look for another series?
       </Link>
       <div className="detailsWrapper">
@@ -125,7 +125,7 @@ const TvDetailsPage = () => {
                 cardSize={false}
               ></TvShowCard>
             ))
-            .slice(0, 5)}
+            .slice(0, 4)}
         </div>
       </div>
     </div>

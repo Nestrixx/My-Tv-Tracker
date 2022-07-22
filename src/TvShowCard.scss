@@ -2,7 +2,7 @@
     height: 200px;
     width: 135px;
     position: absolute;
-    z-index: 0;
+    z-index: 2;
     overflow: hidden;
     border-radius: 20px;
 }
@@ -16,7 +16,7 @@
 
 .searchResultsImage {
     position: absolute;
-    z-index: 0;
+    z-index: 2;
     width: 170px;
     height: 275px;
     overflow: hidden;
