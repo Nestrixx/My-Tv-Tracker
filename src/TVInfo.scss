@@ -55,12 +55,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
     margin-left: 5px;
-    // width: fit-content;
-    // filter: brightness(200%);
 }
 
 .tvSearchInput {
     width: 95%;
+    outline: none;
     color: white;
     font-size: 1.3rem;
     border-radius: 9999px;

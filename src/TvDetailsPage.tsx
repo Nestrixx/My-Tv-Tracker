@@ -19,8 +19,6 @@ const TvDetailsPage = () => {
     useContext(TvInfoContext);
   const [detailedTvInfo, setDetailedTvInfo] = useState<TvDetailedInfo>();
   const { tvId } = useParams();
-  console.log(tvId);
-  console.log(detailedTvId);
 
   const particlesInit = async (main: any) => {
     console.log(main);
@@ -72,15 +70,6 @@ const TvDetailsPage = () => {
   const tvShowDetailsHandler = (id: number) => {
     setDetailedTvId(id);
   };
-
-  console.log(
-    detailedTvInfo?.next_episode_to_air?.air_date
-      ? parseISO(detailedTvInfo?.next_episode_to_air?.air_date)
-      : "no"
-  );
-  !!detailedTvInfo?.next_episode_to_air?.air_date
-    ? console.log(parseISO(detailedTvInfo?.next_episode_to_air.air_date))
-    : console.log("not work");
 
   return (
     <div className="pageWrapper">

@@ -9,7 +9,6 @@ import type { ApiSearchResponse, TvContextType } from "./types";
 import TvShowCard from "./TvShowCard";
 
 const TVInfo = () => {
-  console.log("bryce says hi");
   const [searchResults, setSearchResults] = useState<ApiSearchResponse>();
   const [searchTitle, setSearchTitle] = useState("");
   const { detailedTvId, setDetailedTvId }: TvContextType =
