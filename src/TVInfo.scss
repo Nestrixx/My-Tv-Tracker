@@ -57,17 +57,22 @@
     margin-left: 5px;
 }
 
+.searchInputWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .tvSearchInput {
     width: 95%;
     outline: none;
     color: white;
     font-size: 1.3rem;
     border-radius: 9999px;
-    padding-left: 0.5rem;
+    padding-left: 0.75rem;
     border-width: 1px;
     background: transparent;
-    margin-top: 15px;
-    margin-left: 40px;
+    margin-top: 1rem;
 }
 
 .searchResultsOverview {

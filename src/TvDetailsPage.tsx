@@ -79,7 +79,7 @@ const TvDetailsPage = () => {
         options={particlesOptions as ISourceOptions}
         init={particlesInit}
       /> */}
-      <Link to={"/"} className="linkClass" onClick={() => console.log("hello")}>
+      <Link to={"/"} className="linkClass">
         Look for another series?
       </Link>
       <div className="detailsWrapper">
