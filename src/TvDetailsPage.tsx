@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import type { TvDetailedInfo, ApiSearchResponse } from "./types";
 import { Link, useParams } from "react-router-dom";
 import placeHolder from "./assets/noPhoto.jpg";
-import { parseISO } from "date-fns";
+import { formatDistanceToNow, parseISO } from "date-fns";
 import "./TvDetailsPage.scss";
 import TvShowCard from "./TvShowCard";
 import Particles from "react-tsparticles";
@@ -83,9 +83,14 @@ const TvDetailsPage = () => {
           <div className="">
             <p className="overviewContent">{detailedTvInfo?.overview}</p>
             {!!detailedTvInfo?.next_episode_to_air ? (
-              <p>{detailedTvInfo.next_episode_to_air.air_date}</p>
+              <p className="nextReleaseInfo">
+                Next release:{" "}
+                {formatDistanceToNow(
+                  parseISO(detailedTvInfo?.next_episode_to_air.air_date)
+                )}
+              </p>
             ) : (
-              <p>Next episode is unavailable</p>
+              <p className="nextReleaseInfo">Next episode is unavailable</p>
             )}
           </div>
         </div>
