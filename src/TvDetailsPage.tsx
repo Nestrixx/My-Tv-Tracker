@@ -1,7 +1,6 @@
 import ky from "ky";
-import { useContext, useEffect, useState } from "react";
-import { TvInfoContext } from "./TvInfoContext";
-import type { TvContextType, TvDetailedInfo, ApiSearchResponse } from "./types";
+import { useEffect, useState } from "react";
+import type { TvDetailedInfo, ApiSearchResponse } from "./types";
 import { Link, useParams } from "react-router-dom";
 import placeHolder from "./assets/noPhoto.jpg";
 import { parseISO } from "date-fns";
@@ -15,61 +14,42 @@ import { ISourceOptions } from "tsparticles-engine";
 const TvDetailsPage = () => {
   const [generaSearchResults, setGeneraSearchResults] =
     useState<ApiSearchResponse>();
-  const { detailedTvId, setDetailedTvId }: TvContextType =
-    useContext(TvInfoContext);
   const [detailedTvInfo, setDetailedTvInfo] = useState<TvDetailedInfo>();
   const { tvId } = useParams();
 
   const particlesInit = async (main: any) => {
-    console.log(main);
     await loadFull(main);
   };
-
-  useEffect(() => {
-    return () => {
-      setDetailedTvId(undefined);
-    };
-  }, [setDetailedTvId]);
 
   useEffect(() => {
     const getTvShowDetails = async () => {
       const tvDetailedInfo: TvDetailedInfo = await ky
         .get(
-          `https://api.themoviedb.org/3/tv/${
-            detailedTvId ? detailedTvId : tvId
-          }?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
+          `https://api.themoviedb.org/3/tv/${tvId}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
         )
         .json();
       setDetailedTvInfo(tvDetailedInfo);
     };
 
     getTvShowDetails();
-  }, [detailedTvId, tvId]);
+  }, [tvId]);
 
   useEffect(() => {
     const getTvShowRecommendations = async () => {
       const tvRecommendationsShows: ApiSearchResponse = await ky
         .get(
-          `https://api.themoviedb.org/3/tv/${
-            detailedTvId ? detailedTvId : tvId
-          }/recommendations?api_key=${
-            process.env.REACT_APP_TMDB_API_KEY
-          }&language=en-US&page=1`
+          `https://api.themoviedb.org/3/tv/${tvId}/recommendations?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`
         )
         .json();
       setGeneraSearchResults(tvRecommendationsShows);
     };
     getTvShowRecommendations();
-  }, [detailedTvId, tvId]);
+  }, [tvId]);
 
   useEffect(() => {
     const getCurrentlyAiringShows = async () => {};
     getCurrentlyAiringShows();
   });
-
-  const tvShowDetailsHandler = (id: number) => {
-    setDetailedTvId(id);
-  };
 
   return (
     <div className="pageWrapper">
@@ -120,7 +100,6 @@ const TvDetailsPage = () => {
           {generaSearchResults?.results
             .map((searchResult) => (
               <TvShowCard
-                tvShowDetailsHandler={tvShowDetailsHandler}
                 searchResult={searchResult}
                 cardSize={false}
               ></TvShowCard>

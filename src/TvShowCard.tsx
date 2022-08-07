@@ -2,25 +2,24 @@ import { useState } from "react";
 import { SearchResponse } from "./types/SearchTvResponse";
 import placeHolder from "./assets/noPhoto.jpg";
 import "./TvShowCard.scss";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
-  //this is a prop type it is a function as indicated by arrows that takes a paramater of id and returns false.
-  tvShowDetailsHandler: (id: number) => void;
   searchResult: SearchResponse;
   cardSize: boolean;
 };
 
-const TvShowCard = ({
-  tvShowDetailsHandler,
-  searchResult,
-  cardSize,
-}: Props) => {
+const TvShowCard = ({ searchResult, cardSize }: Props) => {
   const [isTextHover, setIsTextHover] = useState(false);
-
+  const navigate = useNavigate();
   const posterSizeHandler = () => {
     const hasPoster = !!searchResult.poster_path;
     return (
-      <div className={cardSize ? "" : "smallerSearchResultsWrapper"}>
+      <div
+        className={
+          cardSize ? "searchResultsWrapper" : "smallerSearchResultsWrapper"
+        }
+      >
         <img
           className={
             cardSize ? "searchResultsImage" : "smallerSearchResultsImage"
@@ -52,7 +51,7 @@ const TvShowCard = ({
       onMouseLeave={() => setIsTextHover(false)}
       className={`searchResultsCard ${!cardSize && "-small"}`}
       key={searchResult.id}
-      onClick={() => tvShowDetailsHandler(searchResult.id)}
+      onClick={() => navigate(`../details/${searchResult.id}`)}
     >
       {posterSizeHandler()}
     </li>
