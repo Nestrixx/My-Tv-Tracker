@@ -36,7 +36,6 @@ body {
     border: 1px solid white;
     border-radius: 2%;
     min-width: 550px;
-    // background-color: lightblue;
 }
 
 .imageOverviewWrapper {
@@ -55,10 +54,16 @@ body {
     font-family: bas;
     font-weight: bold;
     justify-content: space-between;
-    // border-bottom: 1px solid white;
     margin-bottom: 10px;
     margin-top: 10px;
     width: 100%;
+}
+
+.generaSearchSeparator {
+    width: 100%;
+    border-top: 1px solid white;
+    margin-top: 1px;
+    margin-bottom: 10px;
 }
 
 .linkClass {

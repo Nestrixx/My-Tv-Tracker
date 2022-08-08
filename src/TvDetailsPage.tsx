@@ -42,6 +42,7 @@ const TvDetailsPage = () => {
         )
         .json();
       setGeneraSearchResults(tvRecommendationsShows);
+      console.log(tvRecommendationsShows);
     };
     getTvShowRecommendations();
   }, [tvId]);
@@ -100,6 +101,12 @@ const TvDetailsPage = () => {
           <p>{`Number of seasons ${detailedTvInfo?.number_of_seasons}`}</p>
           <p>{`Status: ${detailedTvInfo?.status}`}</p>
         </div>
+        {!!generaSearchResults?.results &&
+        generaSearchResults?.results.length > 0 ? (
+          <div className="generaSearchSeparator" />
+        ) : (
+          ""
+        )}
 
         <div className="recommendedShowsWrapper">
           {generaSearchResults?.results
