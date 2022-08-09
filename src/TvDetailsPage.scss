@@ -16,6 +16,14 @@ body {
     }
 }
 
+.pageWrapper {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    flex-direction: row;
+}
+
 // ok so this works but i probably need to remove this until i can make it all work
 .particlesAffect {
     z-index: 0;
@@ -71,6 +79,7 @@ body {
 
 .linkClass {
     color: white;
+    position: absolute;
     display: flex;
     font-size: 1.7rem;
     padding-top: 3%;

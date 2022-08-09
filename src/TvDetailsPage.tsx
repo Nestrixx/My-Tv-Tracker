@@ -10,11 +10,13 @@ import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import particlesOptions from "./particles.json";
 import { ISourceOptions } from "tsparticles-engine";
+import LoadingSpinner from "./LoadingSpinner";
 
 const TvDetailsPage = () => {
   const [generaSearchResults, setGeneraSearchResults] =
     useState<ApiSearchResponse>();
   const [detailedTvInfo, setDetailedTvInfo] = useState<TvDetailedInfo>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const { tvId } = useParams();
 
@@ -32,6 +34,7 @@ const TvDetailsPage = () => {
         )
         .json();
       setDetailedTvInfo(tvDetailedInfo);
+      setIsLoading(true);
     };
 
     getTvShowDetails();
@@ -69,62 +72,66 @@ const TvDetailsPage = () => {
       <Link to={"/"} className="linkClass">
         Look for another series?
       </Link>
-      <div className="detailsWrapper">
-        <h1 className="detailedCardTitle">{detailedTvInfo?.name}</h1>
-        <div className="imageOverviewWrapper">
-          {!!detailedTvInfo?.poster_path ? (
-            <img
-              className="detailedPagePoster"
-              src={`https://image.tmdb.org/t/p/w154${detailedTvInfo?.poster_path}`}
-              alt="search results posters"
-              height={255}
-            />
-          ) : (
-            <img
-              className="detailedPagePoster"
-              src={placeHolder}
-              alt="missing search results posters"
-              height={255}
-            />
-          )}
-          <div className="">
-            <p className="overviewContent">{detailedTvInfo?.overview}</p>
-            {!!detailedTvInfo?.next_episode_to_air ? (
-              <p className="nextReleaseInfo">
-                Next release:{" "}
-                {formatDistanceToNow(
-                  parseISO(detailedTvInfo?.next_episode_to_air.air_date)
-                )}
-              </p>
+      {isLoading === false ? (
+        <LoadingSpinner />
+      ) : (
+        <div className="detailsWrapper">
+          <h1 className="detailedCardTitle">{detailedTvInfo?.name}</h1>
+          <div className="imageOverviewWrapper">
+            {!!detailedTvInfo?.poster_path ? (
+              <img
+                className="detailedPagePoster"
+                src={`https://image.tmdb.org/t/p/w154${detailedTvInfo?.poster_path}`}
+                alt="search results posters"
+                height={255}
+              />
             ) : (
-              <p className="nextReleaseInfo">Next episode is unavailable</p>
+              <img
+                className="detailedPagePoster"
+                src={placeHolder}
+                alt="missing search results posters"
+                height={255}
+              />
             )}
+            <div className="">
+              <p className="overviewContent">{detailedTvInfo?.overview}</p>
+              {!!detailedTvInfo?.next_episode_to_air ? (
+                <p className="nextReleaseInfo">
+                  Next release:{" "}
+                  {formatDistanceToNow(
+                    parseISO(detailedTvInfo?.next_episode_to_air.air_date)
+                  )}
+                </p>
+              ) : (
+                <p className="nextReleaseInfo">Next episode is unavailable</p>
+              )}
+            </div>
+          </div>
+          <div className="subInfo">
+            <p>{`Initial air date ${detailedTvInfo?.first_air_date}`}</p>
+            <p>{`${roundedVoteAverage}/10`}</p>
+            <p>{`Number of seasons ${detailedTvInfo?.number_of_seasons}`}</p>
+            <p>{`Status: ${detailedTvInfo?.status}`}</p>
+          </div>
+          {!!generaSearchResults?.results &&
+          generaSearchResults?.results.length > 0 ? (
+            <div className="generaSearchSeparator" />
+          ) : (
+            ""
+          )}
+
+          <div className="recommendedShowsWrapper">
+            {generaSearchResults?.results
+              .map((searchResult) => (
+                <TvShowCard
+                  searchResult={searchResult}
+                  cardSize={false}
+                ></TvShowCard>
+              ))
+              .slice(0, 4)}
           </div>
         </div>
-        <div className="subInfo">
-          <p>{`Initial air date ${detailedTvInfo?.first_air_date}`}</p>
-          <p>{`${roundedVoteAverage}/10`}</p>
-          <p>{`Number of seasons ${detailedTvInfo?.number_of_seasons}`}</p>
-          <p>{`Status: ${detailedTvInfo?.status}`}</p>
-        </div>
-        {!!generaSearchResults?.results &&
-        generaSearchResults?.results.length > 0 ? (
-          <div className="generaSearchSeparator" />
-        ) : (
-          ""
-        )}
-
-        <div className="recommendedShowsWrapper">
-          {generaSearchResults?.results
-            .map((searchResult) => (
-              <TvShowCard
-                searchResult={searchResult}
-                cardSize={false}
-              ></TvShowCard>
-            ))
-            .slice(0, 4)}
-        </div>
-      </div>
+      )}
     </div>
   );
 };
