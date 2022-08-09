@@ -23,19 +23,21 @@ body {
 
 .detailsWrapper {
     z-index: 2;
-    position: fixed;
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     padding: 15px;
-    top: 50%;
+    top: 36rem;
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     border: 1px solid white;
     border-radius: 2%;
-    min-width: 550px;
+    @media (max-width: 576px) {
+        // background-color: aliceblue;
+    }
 }
 
 .imageOverviewWrapper {
@@ -50,6 +52,7 @@ body {
 
 .subInfo {
     display: flex;
+    gap: 5px;
     flex-wrap: wrap;
     font-family: bas;
     font-weight: bold;
@@ -85,17 +88,16 @@ body {
 
 .recommendedShowsWrapper {
     display: flex;
+    flex-wrap: wrap;
     gap: 5px;
     width: 100%;
     justify-content: space-evenly;
 }
 
 .overviewContent {
-    // min-height: 25px;
     max-width: 550px;
     height: 200px;
     overflow-y: auto;
-    // scrollbar // overflow: scroll; // white-space: nowrap;
 }
 
 .detailedCardTitle {

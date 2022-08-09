@@ -15,7 +15,10 @@ const TvDetailsPage = () => {
   const [generaSearchResults, setGeneraSearchResults] =
     useState<ApiSearchResponse>();
   const [detailedTvInfo, setDetailedTvInfo] = useState<TvDetailedInfo>();
+
   const { tvId } = useParams();
+
+  let roundedVoteAverage = 0;
 
   const particlesInit = async (main: any) => {
     await loadFull(main);
@@ -42,7 +45,6 @@ const TvDetailsPage = () => {
         )
         .json();
       setGeneraSearchResults(tvRecommendationsShows);
-      console.log(tvRecommendationsShows);
     };
     getTvShowRecommendations();
   }, [tvId]);
@@ -51,6 +53,10 @@ const TvDetailsPage = () => {
     const getCurrentlyAiringShows = async () => {};
     getCurrentlyAiringShows();
   });
+
+  // this is to get the rounded vote average for the series so it looks cleaner
+  if (!!detailedTvInfo)
+    roundedVoteAverage = Math.round(detailedTvInfo?.vote_average * 10) / 10;
 
   return (
     <div className="pageWrapper">
@@ -97,7 +103,7 @@ const TvDetailsPage = () => {
         </div>
         <div className="subInfo">
           <p>{`Initial air date ${detailedTvInfo?.first_air_date}`}</p>
-          <p>{`${detailedTvInfo?.vote_average}/10`}</p>
+          <p>{`${roundedVoteAverage}/10`}</p>
           <p>{`Number of seasons ${detailedTvInfo?.number_of_seasons}`}</p>
           <p>{`Status: ${detailedTvInfo?.status}`}</p>
         </div>
