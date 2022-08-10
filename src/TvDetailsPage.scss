@@ -37,14 +37,14 @@ body {
     align-items: center;
     flex-direction: column;
     padding: 15px;
-    top: 36rem;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     border: 1px solid white;
     border-radius: 2%;
     @media (max-width: 576px) {
-        // background-color: aliceblue;
+        top: 35rem;
     }
 }
 
@@ -79,7 +79,6 @@ body {
 
 .linkClass {
     color: white;
-    position: absolute;
     display: flex;
     font-size: 1.7rem;
     padding-top: 3%;
