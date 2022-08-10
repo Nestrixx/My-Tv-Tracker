@@ -16,7 +16,7 @@ const TvDetailsPage = () => {
   const [generaSearchResults, setGeneraSearchResults] =
     useState<ApiSearchResponse>();
   const [detailedTvInfo, setDetailedTvInfo] = useState<TvDetailedInfo>();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const { tvId } = useParams();
 
@@ -34,7 +34,7 @@ const TvDetailsPage = () => {
         )
         .json();
       setDetailedTvInfo(tvDetailedInfo);
-      setIsLoading(true);
+      setIsLoading(false);
     };
 
     getTvShowDetails();
@@ -70,7 +70,7 @@ const TvDetailsPage = () => {
         init={particlesInit}
       /> */}
 
-      {isLoading === false ? (
+      {isLoading ? (
         <LoadingSpinner />
       ) : (
         <div>
