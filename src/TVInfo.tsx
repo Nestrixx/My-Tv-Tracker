@@ -50,7 +50,11 @@ const TVInfo = () => {
       <div className="totalListWrapper">
         <ul className="uListWrapper">
           {searchResults?.results.map((searchResult) => (
-            <TvShowCard searchResult={searchResult} cardSize={true} />
+            <TvShowCard
+              key={searchResult.id}
+              searchResult={searchResult}
+              cardSize={true}
+            />
           ))}
         </ul>
       </div>
