@@ -78,7 +78,19 @@ const TvDetailsPage = () => {
             Look for another series?
           </Link>
           <div className="detailsWrapper">
-            <h1 className="detailedCardTitle">{detailedTvInfo?.name}</h1>
+            <div>
+              <h1 className="detailedCardTitle">{detailedTvInfo?.name}</h1>
+              {!!detailedTvInfo?.next_episode_to_air ? (
+                <p className="nextReleaseInfo">
+                  Next release:{" "}
+                  {formatDistanceToNow(
+                    parseISO(detailedTvInfo?.next_episode_to_air.air_date)
+                  )}
+                </p>
+              ) : (
+                <p className="nextReleaseInfo">Next episode is unavailable</p>
+              )}
+            </div>
             <div className="imageOverviewWrapper">
               {!!detailedTvInfo?.poster_path ? (
                 <img
@@ -97,16 +109,6 @@ const TvDetailsPage = () => {
               )}
               <div className="">
                 <p className="overviewContent">{detailedTvInfo?.overview}</p>
-                {!!detailedTvInfo?.next_episode_to_air ? (
-                  <p className="nextReleaseInfo">
-                    Next release:{" "}
-                    {formatDistanceToNow(
-                      parseISO(detailedTvInfo?.next_episode_to_air.air_date)
-                    )}
-                  </p>
-                ) : (
-                  <p className="nextReleaseInfo">Next episode is unavailable</p>
-                )}
               </div>
             </div>
             <div className="subInfo">

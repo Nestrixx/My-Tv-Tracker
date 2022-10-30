@@ -7,16 +7,9 @@
     border-radius: 20px;
 }
 
-// this needs some work it still darkens the words as well as the writing.
-.searchResultsImage:hover {
-    background-color: #000;
-    opacity: 0.5;
-    // filter: brightness(200%);
-}
-
 .searchResultsImage {
     position: absolute;
-    z-index: 2;
+    z-index: -1;
     width: 170px;
     height: 275px;
     overflow: hidden;
@@ -28,8 +21,26 @@
     justify-content: center;
 }
 
-// .smallerSearchResultsImage:hover {
-//     background-color: #000;
-//     opacity: 0.5;
-//     // filter: brightness(200%);
-// }
+.cardHoverFilter {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient( rgba(45, 55, 72, 0.4) 0%, rgba(45, 55, 72, 0.9) 100%);
+}
+
+.filterWrapper {
+    width: 100%;
+    height: 100vh;
+}
+
+.filterWrapper:hover {
+    background: linear-gradient( rgba(45, 55, 72, 0.4) 0%, rgba(45, 55, 72, 0.9) 100%);
+}
+
+.cardHoverFilter:hover {
+    height: 100%;
+}
+
+.smallerSearchResultsImage:hover {
+    background-color: #000;
+    z-index: -1;
+}

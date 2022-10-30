@@ -20,27 +20,29 @@ const TvShowCard = ({ searchResult, cardSize }: Props) => {
           cardSize ? "searchResultsWrapper" : "smallerSearchResultsWrapper"
         }
       >
-        <img
-          className={
-            cardSize ? "searchResultsImage" : "smallerSearchResultsImage"
-          }
-          src={
-            hasPoster
-              ? `https://image.tmdb.org/t/p/w154${searchResult?.poster_path}`
-              : placeHolder
-          }
-          alt={
-            hasPoster
-              ? "search results posters"
-              : "missing search results posters"
-          }
-        />
-        {cardSize && isTextHover && (
-          <div>
-            <h1 className="searchResultsTitle">{searchResult.name}</h1>
-            <p className="searchResultsOverview">{searchResult.overview}</p>
-          </div>
-        )}
+        <div className="filterWrapper">
+          <img
+            className={
+              cardSize ? "searchResultsImage" : "smallerSearchResultsImage"
+            }
+            src={
+              hasPoster
+                ? `https://image.tmdb.org/t/p/w154${searchResult?.poster_path}`
+                : placeHolder
+            }
+            alt={
+              hasPoster
+                ? "search results posters"
+                : "missing search results posters"
+            }
+          />
+          {cardSize && isTextHover && (
+            <div className="cardHoverFilter">
+              <h1 className="searchResultsTitle">{searchResult.name}</h1>
+              <p className="searchResultsOverview">{searchResult.overview}</p>
+            </div>
+          )}
+        </div>
       </div>
     );
   };
