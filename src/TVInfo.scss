@@ -1,106 +1,122 @@
 .tvPageWrapper {
-    // background-color: #36393f;
-    width: 100%;
-    height: 100vh;
-    background: linear-gradient( 45deg, rgba(251, 238, 147, 1) 0%, rgba(116, 227, 236, 1) 43%, rgba(242, 111, 235, 1) 100%);
-    background-size: 300%;
-    animation: bg-animation 15s infinite alternate;
+  // background-color: #36393f;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(
+    45deg,
+    rgba(251, 238, 147, 1) 0%,
+    rgba(116, 227, 236, 1) 43%,
+    rgba(242, 111, 235, 1) 100%
+  );
+  background-size: 300%;
+  animation: bg-animation 15s infinite alternate;
+}
+
+body {
+  overflow-x: hidden;
 }
 
 @keyframes bg-animation {
-    0% {
-        background-position: left;
-    }
-    100% {
-        background-position: right;
-    }
+  0% {
+    background-position: left;
+  }
+  100% {
+    background-position: right;
+  }
 }
 
 .totalListWrapper {
-    color: black;
-    text-decoration: none;
+  color: black;
+  text-decoration: none;
+}
+
+.uPopularShowListWrapper {
+  width: 200%;
+  display: flex;
+  gap: 8px;
+  background: black;
 }
 
 .uListWrapper {
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-    flex-wrap: wrap;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
 .searchResultsCard {
-    &:hover {
-        color: black;
-        cursor: pointer;
-    }
-    &.-small {
-        width: 135px;
-        height: 200px;
-    }
-    display: flex;
-    flex-direction: column;
-    width: 170px;
-    height: 275px;
-    position: relative;
-    z-index: 20;
-    border-radius: 30px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  &:hover {
+    color: black;
+    cursor: pointer;
+  }
+  &.-small {
+    width: 135px;
+    height: 200px;
+  }
+  display: flex;
+  flex-direction: column;
+  width: 170px;
+  height: 275px;
+  position: relative;
+  z-index: 20;
+  border-radius: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .searchResultsTitle {
-    margin-top: 0px;
-    padding-left: 3px;
-    padding-top: 8px;
-    padding-right: 5px;
-    color: white;
-    z-index: 2;
-    font-size: 25px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    margin-left: 5px;
+  margin-top: 0px;
+  padding-left: 3px;
+  padding-top: 8px;
+  padding-right: 5px;
+  color: white;
+  z-index: 2;
+  font-size: 25px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  margin-left: 5px;
 }
 
 ::placeholder {
-    opacity: 0.9;
+  opacity: 0.9;
 }
 
 .searchInputWrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .tvSearchInput {
-    width: 95%;
-    outline: none;
-    color: white;
-    font-size: 2.3rem;
-    border-radius: 9999px;
-    padding-left: 0.75rem;
-    border-width: 2px;
-    background: transparent;
-    margin-top: 1rem;
+  width: 95%;
+  outline: none;
+  color: white;
+  font-size: 2.3rem;
+  border-radius: 9999px;
+  padding-left: 0.75rem;
+  border-width: 2px;
+  background: transparent;
+  margin-top: 1rem;
 }
 
 .searchResultsOverview {
-    margin-top: 0px;
-    padding-left: 3px;
-    padding-top: 8px;
-    padding-right: 5px;
-    color: white;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 8;
-    -webkit-box-orient: vertical;
-    word-break: break-word;
-    width: fit-content;
-    height: 150px;
-    margin: 5px;
-    white-space: normal;
+  margin-top: 0px;
+  padding-left: 3px;
+  padding-top: 8px;
+  padding-right: 5px;
+  color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+  word-break: break-word;
+  width: fit-content;
+  height: 150px;
+  margin: 5px;
+  white-space: normal;
 }

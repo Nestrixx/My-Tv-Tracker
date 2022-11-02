@@ -62,6 +62,18 @@ const TVInfo = () => {
         />
       </div>
       <div className="totalListWrapper">
+        <p>popular airing shows</p>
+        <ul className="uPopularShowListWrapper">
+          {!searchResults
+            ? popularSearchResults?.results.map((searchResult) => (
+                <TvShowCard
+                  key={searchResult.id}
+                  searchResult={searchResult}
+                  cardSize={true}
+                />
+              ))
+            : null}
+        </ul>
         <ul className="uListWrapper">
           {searchResults?.results.map((searchResult) => (
             <TvShowCard
