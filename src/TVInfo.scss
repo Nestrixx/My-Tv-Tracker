@@ -31,10 +31,13 @@ body {
 }
 
 .uPopularShowListWrapper {
-  width: 200%;
+  width: max-content;
+  //   white-space: nowrap;
   display: flex;
-  gap: 8px;
+  gap: 10px;
   background: black;
+  //   overscroll-behavior-x: contain;
+  overflow-x: scroll;
 }
 
 .uListWrapper {
@@ -79,6 +82,10 @@ body {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   margin-left: 5px;
+}
+
+.searchResultsCard:hover {
+  transform: scale(1.08);
 }
 
 ::placeholder {

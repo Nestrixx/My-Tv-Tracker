@@ -35,7 +35,15 @@ const TvShowCard = ({ searchResult, cardSize }: Props) => {
                 ? "search results posters"
                 : "missing search results posters"
             }
-          />
+          ></img>
+          {!hasPoster ? (
+            <div className="cardHoverFilter">
+              <h1 className="searchResultsTitle">{searchResult.name}</h1>
+              <p className="searchResultsOverview">{searchResult.overview}</p>
+            </div>
+          ) : (
+            ""
+          )}
           {cardSize && isTextHover && (
             <div className="cardHoverFilter">
               <h1 className="searchResultsTitle">{searchResult.name}</h1>
