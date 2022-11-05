@@ -12,6 +12,8 @@ const TVInfo = () => {
   const [searchTitle, setSearchTitle] = useState("");
   const [popularSearchResults, setPopularSearchResults] =
     useState<ApiSearchResponse>();
+  const [showsAiringTodayResults, getShowsAiringTodayResults] =
+    useState<ApiSearchResponse>();
   // const { detailedTvId, setDetailedTvId }: TvContextType =
   // useContext(TvInfoContext);
   // const navigate = useNavigate();
@@ -45,6 +47,18 @@ const TVInfo = () => {
     getPopularAiringShows();
   }, []);
 
+  useEffect(() => {
+    const getShowsAiringToday = async () => {
+      const showsAiringToday: ApiSearchResponse = await ky
+        .get(
+          `https://api.themoviedb.org/3/tv/airing_today?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`
+        )
+        .json();
+      getShowsAiringTodayResults(showsAiringToday);
+    };
+    getShowsAiringToday();
+  }, []);
+
   const titleHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTitle(event.target.value);
   };
@@ -62,10 +76,30 @@ const TVInfo = () => {
         />
       </div>
       <div className="totalListWrapper">
-        <p>popular airing shows</p>
+        {!searchResults ? (
+          <p className="popularShowsList"> Popular Airing Shows</p>
+        ) : (
+          ""
+        )}
         <ul className="uPopularShowListWrapper">
           {!searchResults
             ? popularSearchResults?.results.map((searchResult) => (
+                <TvShowCard
+                  key={searchResult.id}
+                  searchResult={searchResult}
+                  cardSize={true}
+                />
+              ))
+            : null}
+        </ul>
+        {!searchResults ? (
+          <p className="popularShowsList"> Shows Airing today</p>
+        ) : (
+          ""
+        )}
+        <ul className="uPopularShowListWrapper">
+          {!searchResults
+            ? showsAiringTodayResults?.results.map((searchResult) => (
                 <TvShowCard
                   key={searchResult.id}
                   searchResult={searchResult}

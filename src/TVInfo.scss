@@ -35,7 +35,6 @@ body {
 
 .uPopularShowListWrapper {
     width: max-content;
-    //   white-space: nowrap;
     display: flex;
     gap: 10px;
 }
@@ -87,6 +86,7 @@ body {
 .searchResultsCard:hover {
     transform: scale(1.08);
     transition-duration: 0.5s;
+    outline: 1px solid white;
 }
 
 ::placeholder {
